@@ -48,10 +48,12 @@ const Home = () => {
        {loading ? <Loader/> : 
        <>
        <h2 className="text-xl px-8">Region: {region}</h2>
-       <div className="my-4 p-9">
+       <div className="my-4 p-9"> 
+       <h2 className="text-3xl text-center p-5">Misure di Conservazione</h2>
       <SpeciesList species={species} />
       </div>
       <div className="my-4 p-9">
+     
       <h2 className="text-3xl text-center p-5">Mammiferi</h2>
       <SpeciesList species={mammals} />
       </div>
