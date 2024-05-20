@@ -9,11 +9,14 @@ const Home = () => {
   const [species, setSpecies] = useState<Species[]>([]);
   const [mammals, setMammals] = useState<Species[]>([]);
   const [loading, setLoading] = useState<boolean>(true)
+  const [region, setRegion] = useState<string>('')
   useEffect(() => {
     const fetchData = async () => {
       const regionsRes = await fetch('/api/regions');
       const regions = await regionsRes.json();
       const randomRegion = regions[Math.floor(Math.random() * regions.length)];
+      
+      setRegion(randomRegion.identifier)
 
       const speciesRes = await fetch(`/api/species?region=${randomRegion.identifier}`);
       let speciesData = await speciesRes.json()
@@ -44,6 +47,7 @@ const Home = () => {
       <h1 className="text-4xl px-8 py-4">OpenEconomics - Lista Rossa IUCN</h1>
        {loading ? <Loader/> : 
        <>
+       <h2 className="text-xl px-8">Region: {region}</h2>
        <div className="my-4 p-9">
       <SpeciesList species={species} />
       </div>
